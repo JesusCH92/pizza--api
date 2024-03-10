@@ -31,7 +31,7 @@ final class PizzaUpdater
             $pizza->special(),
             $pizza->createdAt(),
             $pizza->updatedAt(),
-            ...$pizza->ingredients()->value()
+            $pizza->ingredients()->value()
         );
     }
 
