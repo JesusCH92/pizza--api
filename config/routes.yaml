@@ -3,3 +3,9 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+
+# PIZZA
+app_pizza_maker:
+    path: /pizza-maker
+    controller: App\Pizza\Infrastructure\Api\PizzaMakerController::pizzaMaker
+    methods: POST
