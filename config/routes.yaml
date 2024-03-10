@@ -9,3 +9,8 @@ app_pizza_maker:
     path: /pizza-maker
     controller: App\Pizza\Infrastructure\Api\PizzaMakerController::pizzaMaker
     methods: POST
+
+app_find_pizza_by_id:
+    path: /pizza/{id}
+    controller: App\Pizza\Infrastructure\Api\PizzaController::getPizza
+    methods: GET
