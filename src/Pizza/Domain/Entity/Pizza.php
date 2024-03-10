@@ -2,13 +2,87 @@
 
 namespace App\Pizza\Domain\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Delete;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Post;
+use App\Pizza\ApplicationService\DTO\PizzaGetterResponse;
+use App\Pizza\ApplicationService\DTO\PizzaMakerRequest;
+use App\Pizza\ApplicationService\DTO\PizzaMakerResponse;
 use App\Pizza\ApplicationService\DTO\PizzaUpdaterRequest;
+use App\Pizza\ApplicationService\DTO\PizzaUpdaterResponse;
 use App\Pizza\Domain\ValueObject\Ingredients;
 use App\Pizza\Domain\ValueObject\Name;
+use App\Pizza\Infrastructure\Api\PizzaCancelerController;
+use App\Pizza\Infrastructure\Api\PizzaController;
+use App\Pizza\Infrastructure\Api\PizzaMakerController;
+use App\Pizza\Infrastructure\Api\PizzaUpdaterController;
 use DateTimeImmutable;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
+#[ApiResource(operations: [
+    new Get(
+        uriTemplate: '/pizza/{id}',
+        controller: PizzaController::class,
+        openapiContext: [
+            'summary' => 'Obtiene una pizza por su ID',
+            'description' => 'Recupera los detalles de una pizza específica usando su ID único.',
+        ],
+        output: PizzaGetterResponse::class,
+        name: 'app_find_pizza_by_id'
+    ),
+    new Post(
+        uriTemplate: '/pizza-maker',
+        controller: PizzaMakerController::class,
+        openapiContext: [
+            'summary' => 'Creación de una pizza',
+            'description' => 'Datos base para crear una pizza.',
+        ],
+        input: PizzaMakerRequest::class,
+        output: PizzaMakerResponse::class,
+        name: 'app_pizza_maker'
+    ),
+    new Patch(
+        uriTemplate: '/pizza-reorder',
+        controller: PizzaUpdaterController::class,
+        openapiContext: [
+            'summary' => 'Reeordenamos la pizza',
+            'description' => 'Actualizamos la pizza según su ID.',
+        ],
+        input: PizzaUpdaterRequest::class,
+        output: PizzaUpdaterResponse::class,
+        name: 'app_pizza_updater'
+    ),
+    new Delete(
+        uriTemplate: '/pizza-canceled/{id}',
+        controller: PizzaCancelerController::class,
+        openapiContext: [
+            'summary' => 'Eliminamos la pizza',
+            'description' => 'Eliminamos la pizza según su ID.',
+            'responses' => [
+                '204' => [
+                    'description' => 'La pizza se eliminó correctamente',
+                    'content' => [
+                        'application/json' => [
+                            'schema' => [
+                                'type' => 'object',
+                                'properties' => [
+                                    'message' => [
+                                        'type' => 'string',
+                                        'example' => 'Se eliminó el recurso con id: 1',
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ],
+        name: 'app_pizza_deleter'
+    )
+])]
 #[ORM\Entity]
 #[ORM\Table(name: 'pizza')]
 class Pizza
