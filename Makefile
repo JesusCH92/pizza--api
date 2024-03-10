@@ -17,3 +17,7 @@ update-database-schema:
 ##	load-fixtures-data:		cargamos pizzas para hacer pruebas
 load-fixtures-data:
 	- php bin/console doctrine:fixture:load --no-interaction
+
+##	test:		            ejecutamos test
+test:
+	- php bin/phpunit
