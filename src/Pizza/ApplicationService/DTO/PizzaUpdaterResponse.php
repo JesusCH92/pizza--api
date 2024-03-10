@@ -9,7 +9,7 @@ use DateTimeImmutable;
 readonly class PizzaUpdaterResponse
 {
     public function __construct(
-        public int $id,
+        public ?int $id,
         public string $name,
         public ?int $ovenTimeInSeconds,
         public bool $isSpecial,
