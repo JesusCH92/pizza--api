@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Pizza\Domain\ValueObject;
 
+use App\Pizza\Domain\Exception\MaximumAmountExceeded;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -11,6 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Ingredients
 {
     const AMOUNT_MAX = 20;
+
     #[ORM\Column(name: 'ingredients', type: Types::JSON, nullable: false)]
     private array $ingredients;
 
@@ -30,7 +32,7 @@ class Ingredients
         $amount = count($ingredients);
 
         if ($amount > self::AMOUNT_MAX) {
-            // TODO THROW EXCEPTION
+            throw new MaximumAmountExceeded(sprintf('%s is too many ingredients', $amount));
         }
     }
 
