@@ -2,6 +2,7 @@
 
 namespace App\Pizza\Domain\Entity;
 
+use App\Pizza\ApplicationService\DTO\PizzaUpdaterRequest;
 use App\Pizza\Domain\ValueObject\Ingredients;
 use App\Pizza\Domain\ValueObject\Name;
 use DateTimeImmutable;
@@ -82,5 +83,13 @@ class Pizza
     public function special(): bool
     {
         return $this->special;
+    }
+
+    public function updating(PizzaUpdaterRequest $dto): void
+    {
+        $this->name = new Name($dto->name);
+        $this->ovenTimeInSeconds = $dto->ovenTimeInSeconds;
+        $this->ingredients = new Ingredients(...$dto->ingredients);
+        $this->updatedAt = new DateTimeImmutable();
     }
 }
