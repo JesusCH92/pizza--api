@@ -14,3 +14,8 @@ app_find_pizza_by_id:
     path: /pizza/{id}
     controller: App\Pizza\Infrastructure\Api\PizzaController::getPizza
     methods: GET
+
+app_pizza_updater:
+    path: /pizza-reorder
+    controller: App\Pizza\Infrastructure\Api\PizzaUpdaterController::pizzaUpdate
+    methods: PATCH
