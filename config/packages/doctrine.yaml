@@ -22,12 +22,22 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Entity'
                 prefix: 'App\Entity'
                 alias: App
+            Pizza:
+                is_bundle: false
+                dir: '%kernel.project_dir%/src/Pizza/Domain/Entity'
+                prefix: 'App\Pizza\Domain\Entity'
+                alias: Pizza
+            PizzaValueObject:
+                is_bundle: false
+                dir: '%kernel.project_dir%/src/Pizza/Domain/ValueObject'
+                prefix: 'App\Pizza\Domain\ValueObject'
+                alias: PizzaValueObject
 
 when@test:
     doctrine:
         dbal:
             # "TEST_TOKEN" is typically set by ParaTest
-            dbname_suffix: '_test%env(default::TEST_TOKEN)%'
+            #dbname_suffix: '_test%env(default::TEST_TOKEN)%'
 
 when@prod:
     doctrine:
