@@ -26,7 +26,7 @@ final class PizzaGetter
             $pizza->special(),
             $pizza->createdAt(),
             $pizza->updatedAt(),
-            ...$pizza->ingredients()->value()
+            $pizza->ingredients()->value()
         );
     }
 
