@@ -115,7 +115,7 @@ class Pizza
     #[ORM\Column(name: 'special', type: Types::BOOLEAN, nullable: false)]
     private bool $special;
 
-    public function __construct(string $name, ?int $ovenTimeInSeconds, bool $special, string ...$ingredients)
+    public function __construct(?string $name, ?int $ovenTimeInSeconds, bool $special, string ...$ingredients)
     {
         $this->name = new Name($name);
         $this->ovenTimeInSeconds = $ovenTimeInSeconds;

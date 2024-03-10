@@ -7,7 +7,7 @@ namespace App\Pizza\ApplicationService\DTO;
 readonly class PizzaMakerRequest
 {
     public function __construct(
-        public string $name,
+        public ?string $name,
         public ?int $ovenTimeInSeconds,
         public bool $isSpecial,
         public array $ingredients
