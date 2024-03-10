@@ -51,3 +51,9 @@ make load-fixtures-data
 ```shell
 make update-database-schema
 ```
+
+- [ ] Para ejecutar test:
+
+```shell
+make test
+```
