@@ -19,3 +19,8 @@ app_pizza_updater:
     path: /pizza-reorder
     controller: App\Pizza\Infrastructure\Api\PizzaUpdaterController::pizzaUpdate
     methods: PATCH
+
+app_pizza_deleter:
+    path: /pizza-canceled/{id}
+    controller: App\Pizza\Infrastructure\Api\PizzaCancelerController::pizzaCanceled
+    methods: DELETE
