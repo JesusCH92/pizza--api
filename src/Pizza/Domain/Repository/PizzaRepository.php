@@ -9,4 +9,6 @@ use App\Pizza\Domain\Entity\Pizza;
 interface PizzaRepository
 {
     public function save(Pizza $pizza): void;
+
+    public function findById(int $id): ?Pizza;
 }
