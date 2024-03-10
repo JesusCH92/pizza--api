@@ -32,7 +32,7 @@ final class PizzaMaker
             $pizza->ovenTimeInSeconds(),
             $pizza->special(),
             $pizza->createdAt(),
-            ...$pizza->ingredients()->value()
+            $pizza->ingredients()->value()
         );
     }
 }

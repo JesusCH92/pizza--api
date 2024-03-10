@@ -8,17 +8,14 @@ use DateTimeImmutable;
 
 readonly class PizzaMakerResponse
 {
-    public array $ingredients;
-
     public function __construct(
         public int $id,
         public string $name,
         public ?int $ovenTimeInSeconds,
         public bool $isSpecial,
         public DateTimeImmutable $createdAt,
-        string ...$ingredients
+        public array $ingredients
     ) {
-        $this->ingredients = $ingredients;
     }
 
     public function __serialize(): array
