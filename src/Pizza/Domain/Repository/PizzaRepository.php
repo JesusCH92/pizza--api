@@ -11,4 +11,6 @@ interface PizzaRepository
     public function save(Pizza $pizza): void;
 
     public function findById(int $id): ?Pizza;
+
+    public function delete(Pizza $pizza): void;
 }

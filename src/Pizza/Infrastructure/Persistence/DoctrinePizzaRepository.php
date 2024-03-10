@@ -19,6 +19,11 @@ final class DoctrinePizzaRepository extends DoctrineRepository implements PizzaR
     public function findById(int $id): ?Pizza
     {
         return $this->repository(Pizza::class)->findOneBy(['id' => $id]);
+    }
 
+    public function delete(Pizza $pizza): void
+    {
+        $this->entityManager()->remove($pizza);
+        $this->entityManager()->flush();
     }
 }
